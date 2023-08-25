@@ -28,33 +28,77 @@ Before running the script, make sure you have:
 
 ## Ec2 Instance, commands
 
-```sh
-sudo su
+   ```sh
+   sudo su
+   
+   apt-get upgrade -y && apt-get update -y
+   
+   apt install zip unzip -y
+   
+   vim s3-notification-trigger.sh
+   
+   chmod 777 s3-notification-trigger.sh
+   
+   mkdir s3-lambda-function
+   
+   cd s3-lambda-function
+   
+   vim s3-lambda-function.py
+   
+   vim requirements.txt
+   
+   cd ..
+   
+   vim example_file.txt
+   
+   ls
+   
+   apt install awscli -y
+   
+   aws configure
+   
+   sh 's3-notification-trigger'
 
-apt-get upgrade -y && apt-get update -y
+   ```
+## Cleanup Instructions
 
-apt install zip unzip -y
+Before proceeding with cleanup, make sure you've backed up any important data or configurations. These steps will delete the resources you've set up using the script.
 
-vim s3-notification-trigger.sh
+1. **IAM Role Cleanup:**
 
-chmod 777 s3-notification-trigger.sh
+   - Go to AWS Management Console.
+   - Navigate to IAM (Identity and Access Management).
+   - Click on "Roles" in the left-hand menu.
+   - Find and select the role named `s3-lambda-sns`.
+   - Click on "Delete role."
+   - Confirm the deletion.
 
-mkdir s3-lambda-function
+2. **S3 Bucket Cleanup:**
 
-cd s3-lambda-function
+   - Go to AWS Management Console.
+   - Navigate to S3 (Simple Storage Service).
+   - Find and click on the bucket named `ghost-cutie-bucket`.
+   - If there are any files inside the bucket, delete them first.
+   - Once the bucket is empty, click on "Delete bucket."
+   - Follow the prompts to confirm the deletion.
 
-vim s3-lambda-function.py
+3. **Lambda Function Cleanup:**
 
-vim requirements.txt
+   - Go to AWS Management Console.
+   - Navigate to Lambda.
+   - Find and select the function named `s3-lambda-function`.
+   - Click on "Actions" button.
+   - Choose "Delete function."
+   - Confirm the deletion.
 
-cd ..
+4. **SNS Topic Cleanup:**
 
-vim example_file.txt
+   - Go to AWS Management Console.
+   - Navigate to SNS (Simple Notification Service).
+   - Find and select the topic named `s3-lambda-sns`.
+   - Click on "Actions" button.
+   - Choose "Delete topic."
+   - Confirm the deletion.
 
-ls
+By following these steps, you'll be cleaning up the resources that were created by the script. Make sure to double-check that you're deleting the correct resources, as these actions cannot be undone.
 
-apt install awscli -y
-
-aws configure
-
-sh 's3-notification-trigger'
