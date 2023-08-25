@@ -41,9 +41,17 @@ chmod 777 s3-notification-trigger.sh
 
 mkdir s3-lambda-function
 
+cd s3-lambda-function
+
 vim s3-lambda-function.py
 
-vim requirements.txt	
+vim requirements.txt
+
+cd ..
+
+vim example_file.txt
+
+ls
 
 apt install awscli -y
 
